@@ -1,20 +1,45 @@
-const GameBoard  = function () {
+const GameBoard = function () {
+    let container = document.querySelector('.container');
+    let createDiv = document.createElement('div');
+    createDiv.id = "square-wrapper";
+    container.appendChild(createDiv);
+    let squareWrapper = document.querySelector('#square-wrapper');
 
-    gameBoard = [1,2,3,4,5,6,7,8,9];
 
-    return gameBoard;
+    for (let i = 0; i < 9; i++) {
+        let createDiv = document.createElement('div');
+        createDiv.classList.add("squares");
+        squareWrapper.appendChild(createDiv);
+    }
+
+
+    let containerChilds = document.querySelectorAll('.container>div');
+    let boardArray = Array.from(containerChilds);
+    return {
+        boardSquares: boardArray,
+
+    }
+
 }();
 
-const Player = function (score, isAI) {
+const Player = function (score, isHuman) {
     let playerScore = score;
-    let human = isAi;
+    let Human = isHuman;
 
     let chooseSquare = (choice) => {
 
     }
+
+    return{
+        score : playerScore,
+        isHuman : isHuman,
+    }
 }
 
 const GameFlow = function () {
-    
+
 }();
+
+
+
 

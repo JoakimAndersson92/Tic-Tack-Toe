@@ -1,0 +1,31 @@
+.container {
+   
+
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+
+    --calc-width-height: calc(0.5vh + 0.5vw);
+
+}
+
+#square-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+
+    margin: auto;
+    width: 40vw;
+    height: 50vh;
+}
+
+.squares {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+
+    font-size: 5rem;
+
+    
+}
