@@ -1,61 +1,45 @@
-const GameBoard = function () {
-
-    //create wrapper and append to container with id.
+const Querys = function () {
     let container = document.querySelector('.container');
-    let createDiv = document.createElement('div');
-    createDiv.id = "square-wrapper";
-    container.appendChild(createDiv);
     let squareWrapper = document.querySelector('#square-wrapper');
-
-    // generate squares and add class.
-    for (let i = 0; i < 9; i++) {
-        let createDiv = document.createElement('div');
-        createDiv.classList.add("squares");
-        squareWrapper.appendChild(createDiv);
-    }
-
-    // add squares to boardArray
-    let containerChilds = document.querySelectorAll('.container>div');
-    let boardArray = Array.from(containerChilds);
-
-    
-
-    //Listen for click on each square
-    let listenForCLick = () => {
-        console.log("click");
-    }
     let squares = document.querySelectorAll('.squares');
 
-    squares.forEach(element => {
-        element.addEventListener('click', listenForCLick);
-    });
-        
-    
-
     return {
-        boardSquares: boardArray,
-        containerChilds,
+        container,
+        squareWrapper,
+        squares,
     }
-
 }();
 
 
-const Player = function (score, isHuman) {
-    let playerScore = score;
-    let Human = isHuman;
+const GameBoard = function () {
+     
+}();
 
-    let chooseSquare = (choice) => {
-        console.log("ds");
+
+const Player = function (marker) {
+    let playerScore = 0;
+    let playerMarker = marker;
+
+    let chooseSquare = function ()  {
+        if(typeof marker === 'object') return;
+        this.textContent = marker;
     }
 
+    Querys.squares.forEach(element => {
+        element.addEventListener('click', chooseSquare);
+    });
+
     return{
-        score : playerScore,
-        isHuman : isHuman,
+        playerScore,
+        playerMarker,
     }
 }
 
+const newPlayer  = Player("X");
+
 const GameFlow = function () {
 
+     
 }();
 
 
