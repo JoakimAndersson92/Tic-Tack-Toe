@@ -38,7 +38,31 @@ button{
     padding-top: 30vh;
     width: 40vw;
     height: 50vh;
+
+    font-family: just-for-fun;
 }
+.squares:first-child,
+.squares:nth-child(2),
+.squares:nth-child(3){
+    border-top: none;
+}
+.squares:first-child,
+.squares:nth-child(4),
+.squares:nth-child(7){
+    border-left: none;
+}
+.squares:nth-child(7),
+.squares:nth-child(8),
+.squares:nth-child(9){
+    border-bottom: none;
+}
+.squares:nth-child(3),
+.squares:nth-child(6),
+.squares:nth-child(9){
+    border-right: none;
+}
+
+
 
 .squares {
     display: flex;
@@ -46,7 +70,7 @@ button{
     align-items: center;
     border: solid 1px black;
 
-    font-size: 5rem;
+    font-size: calc(var(--calc-width-height) + 8rem);
 }
 
 #player-select {
