@@ -2,20 +2,23 @@ const Querys = function () {
     let container = document.querySelector('.container');
     let squareWrapper = document.querySelector('#square-wrapper');
     let squares = document.querySelectorAll('.squares');
+    let playerSelect = document.querySelector('#player-select');
+    let pvPButton = document.querySelector('#pvp');
+    let pvAButton = document.querySelector('#pva');
 
     return {
         container,
         squareWrapper,
         squares,
+        playerSelect,
+        pvPButton,
+        pvAButton,
     }
 }();
 
 
 const GameBoard = function () {
-
-
-
-
+    let allowMarker = true;
     let checkIfWon = function () {
         let squares = [...Querys.squares];
         let combos = [
@@ -34,20 +37,29 @@ const GameBoard = function () {
                 squares[comb[1]].textContent == squares[comb[2]].textContent &&
                 squares[comb[0]].textContent != '') {
                 console.log("winner");
+                GameBoard.allowMarker = false;
+
+                Querys.squares.forEach(square => {
+                    square.removeEventListener('click', checkIfWon);
+                });
+                
+                
             }
-           
+            else if (squares.every((square) => square.textContent != '')) {
+                console.log("Its a tie!");
+                GameBoard.allowMarker = false;
+                Querys.squares.forEach(square => {
+                    square.removeEventListener('click', checkIfWon);
+                });
+            }
 
         }
 
     }
-
-   
-
     return {
         checkIfWon,
+        allowMarker,
     }
-
-
 }();
 
 
@@ -57,9 +69,10 @@ const Player = function (marker, turn) {
     let playerTurn = turn;
 
     let chooseSquare = function () {
-        if (typeof marker === 'object') return;
+        if (typeof marker === 'object' || GameBoard.allowMarker == false) return;
         if (playerTurn) {
             this.textContent = marker;
+            console.log("mark");
         }
         playerTurn = !playerTurn;
 
@@ -72,19 +85,28 @@ const Player = function (marker, turn) {
     return {
         playerScore,
         playerMarker,
-        playerTurn,       
+        playerTurn,
+        chooseSquare,
     }
 }
 
 
 const GameFlow = function () {
-    const firstPlayer = Player("X", true);
-    const secondPlayer = Player("O", false);
 
-    Querys.squares.forEach(element => {
-        element.addEventListener('click', GameBoard.checkIfWon);
-    });
+    let generatePlayersShowBoard = function () {
+        let firstPlayer = Player("X", true);
+        let secondPlayer = Player("O", false);
 
+        Querys.playerSelect.style.display = "none";
+        Querys.squareWrapper.style.display = "grid";
+
+        Querys.squares.forEach(element => {
+            element.addEventListener('click', GameBoard.checkIfWon, { once: true });
+        });
+        return firstPlayer, secondPlayer;
+    }
+
+    Querys.pvPButton.addEventListener('click', generatePlayersShowBoard);
 
 
 }();
