@@ -35,6 +35,7 @@ button{
     grid-template-rows: repeat(3, minmax(0, 1fr));
 
     margin: auto;
+    padding-top: 30vh;
     width: 40vw;
     height: 50vh;
 }
@@ -70,9 +71,23 @@ button{
     
 }
 
-#title {
+.title {
     font-size: calc(1.5vh + 1.5vw);
     font-family: just-for-fun;
+}
+
+#win-screen{
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+background-color: rgba(0, 0, 0, 0.301);
+
+
 }
 
 

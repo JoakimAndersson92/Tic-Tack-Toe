@@ -5,6 +5,7 @@ const Querys = function () {
     let playerSelect = document.querySelector('#player-select');
     let pvPButton = document.querySelector('#pvp');
     let pvAButton = document.querySelector('#pva');
+    let winScreen = document.querySelector('#win-screen');
 
     return {
         container,
@@ -13,6 +14,7 @@ const Querys = function () {
         playerSelect,
         pvPButton,
         pvAButton,
+        winScreen,
     }
 }();
 
@@ -36,7 +38,7 @@ const GameBoard = function () {
             if (squares[comb[0]].textContent == squares[comb[1]].textContent &&
                 squares[comb[1]].textContent == squares[comb[2]].textContent &&
                 squares[comb[0]].textContent != '') {
-                console.log("winner");
+                Querys.winScreen.style.display = "block";
                 GameBoard.allowMarker = false;
 
                 Querys.squares.forEach(square => {
@@ -46,7 +48,8 @@ const GameBoard = function () {
                 
             }
             else if (squares.every((square) => square.textContent != '')) {
-                console.log("Its a tie!");
+                Querys.winScreen.style.display = "block";
+                Querys.winScreen.firstElementChild.textContent = "Its a tie!";
                 GameBoard.allowMarker = false;
                 Querys.squares.forEach(square => {
                     square.removeEventListener('click', checkIfWon);
