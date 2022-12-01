@@ -1,3 +1,4 @@
+
 const Querys = function () {
     let container = document.querySelector('.container');
     let squareWrapper = document.querySelector('#square-wrapper');
@@ -6,6 +7,7 @@ const Querys = function () {
     let pvPButton = document.querySelector('#pvp');
     let pvAButton = document.querySelector('#pva');
     let winScreen = document.querySelector('#win-screen');
+    let replayButton = document.querySelector('#replay-button');
 
     return {
         container,
@@ -15,9 +17,11 @@ const Querys = function () {
         pvPButton,
         pvAButton,
         winScreen,
+        replayButton,
     }
 }();
 
+console.log(Querys.replayButton);
 
 const GameBoard = function () {
     let allowMarker = true;
@@ -44,8 +48,8 @@ const GameBoard = function () {
                 Querys.squares.forEach(square => {
                     square.removeEventListener('click', checkIfWon);
                 });
-                
-                
+
+
             }
             else if (squares.every((square) => square.textContent != '')) {
                 Querys.winScreen.style.display = "block";
@@ -94,6 +98,8 @@ const Player = function (marker, turn) {
 }
 
 
+
+
 const GameFlow = function () {
 
     let generatePlayersShowBoard = function () {
@@ -112,8 +118,19 @@ const GameFlow = function () {
     Querys.pvPButton.addEventListener('click', generatePlayersShowBoard);
 
 
+
+
 }();
 
+
+const ResetGame = function () {
+
+    let reloadPage = function () {
+        window.location.reload();
+    }
+    
+    Querys.replayButton.addEventListener('click', reloadPage);
+}();
 
 
 

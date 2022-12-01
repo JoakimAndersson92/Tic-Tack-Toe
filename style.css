@@ -110,8 +110,13 @@ button{
 
     text-align: center;
 background-color: rgba(0, 0, 0, 0.301);
+}
 
+#win-screen button {
+    width: 15%;
+    height: 10%;
 
+    font-size: calc(1.5vh + 1.5vw);
 }
 
 
